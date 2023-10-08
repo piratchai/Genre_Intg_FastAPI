@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Index</title>
+    <link rel="stylesheet" href="./vendor/bootstrap/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="./vendor//css/manage_audio.css"/>
+    <script src="./vendor/js/jquery-3.7.1.min.js"></script>
+    <script src="./vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="./vendor/js/base.js"></script>
+</head>
+<body>
+    
+    <div id="includedNavbar"></div>
+
+    <div class="col" style="margin-top: 2rem;">
+        <div class="text-center">
+            <h1>Audio Recorder Example (สำหรับน้องป่าน)</h1>
+        </div>
+    </div>
+    <div class="audio-record" class="col" style="margin-top: 2rem;">
+        <button id="recordButton" class="btn btn-lg btn-primary">Start Recording</button>&emsp;
+        <button id="stopButton" class="btn btn-lg btn-info inactive">Stop</button>
+    </div>
+
+    <div class="playback">
+        <audio src controls id="audio-playback" class="hidden"></audio>
+    </div>
+
+    <div class="download">
+        <button class="hidden" id="downloadContainer">
+            <a href download id="downloadButton">Download Audio</a>
+        </button>
+    </div>
+
+    <script src="./vendor/js/manage-audio.js"></script>
+
+</body>
+</html>

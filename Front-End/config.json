@@ -1,0 +1,9 @@
+{
+    "prediction" : {
+        "ip_domain": "http://127.0.0.1:8000",
+        "uploadFile_path": "/uploadfile"
+    },
+    "recording" :{
+        
+    }
+}

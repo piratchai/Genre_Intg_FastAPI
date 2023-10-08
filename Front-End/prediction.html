@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Index</title>
+    <link rel="stylesheet" href="./vendor/bootstrap/css/bootstrap.min.css"/>
+    <script src="./vendor/js/jquery-3.7.1.min.js"></script>
+    <script src="./vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="./vendor/js/base.js"></script>
+</head>
+<body>
+    
+    <div id="includedNavbar"></div>
+
+    <div class="alert alert-danger" id="alert-danger" role="alert">
+        <!--  -->
+    </div>
+
+    <div class="alert alert-success" id="alert-success" role="alert">
+        <!--  -->
+    </div>
+
+
+    <div class="col-9 offset-4" style="margin-top: 4rem;">
+
+        <form id="form-demo" enctype="multipart/form-data" onsubmit="return false">
+            <input class="btn btn-info" type="file" id="file_upload" name="file_upload">
+            <button type="button" class="btn btn-secondary" id="button-send">ส่งตรวจเลย</button>
+        </form>
+
+        <script lang="text/javascript">
+            var alert_success = $('#alert-success')
+            var alert_danger = $('#alert-danger')
+            alert_success.hide();
+            alert_danger.hide();
+
+            $('#button-send').click(sendFormData)
+
+            function sendFormData(){
+
+                alert_success.hide();
+                alert_danger.hide();
+
+                var domain = config_base.prediction.ip_domain;
+                var uploadFile_path = config_base.prediction.uploadFile_path;
+
+                var formData = new FormData();
+                var ajaxUrl = domain + uploadFile_path;
+
+                var file_upload = $('#file_upload')[0].files[0];
+                formData.append('file', file_upload)
+
+                $.ajax({
+                    url: ajaxUrl,
+                    type: 'POST',
+                    data: formData,
+                    contentType: false,
+                    processData: false
+                }).done(function(response){
+                    console.log(response)
+                    alert_success.text('ชื่อไฟล์คือ ' + response.filename);
+                    alert_success.show();
+                }).fail(function(err){
+                    if(err != undefined && err != null && (err.responseJSON != undefined || err.responseJSON != null))
+                        var msg = err.responseJSON.detail;
+                        console.error('Error : ', msg)
+                        alert_danger.text('มี Error ค่ะ ' + response.filename);
+                        alert_danger.show();
+                }).always(function(){
+                    console.log('AJAX request finished.')
+                })
+            }
+        </script>
+    </div>
+
+</body>
+</html>
